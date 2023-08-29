@@ -93,11 +93,10 @@ if __name__ == "__main__":
     
     while True:
         response = _getData(operation)
-        
         if 'result' in response and isinstance(response['result'], list) and len(response['result']) == 0:
             print("No more data...")
+            logger.info("No more data...")
             break
-        
         wait = _extractFields(response)
         operation = "next"
         time.sleep(wait)
