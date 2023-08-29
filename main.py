@@ -73,17 +73,17 @@ if __name__ == "__main__":
                 'timestamp': entry['timestamp'],
                 'Date (converted)': timestamp_readable,
                 '_id': entry['_id'],
+                'alert_name' : entry['alert_name'],
+                'alert_type' : entry['alert_type'],
+                'dlp_incident_id' : entry['dlp_incident_id'],
+                'dlp_profile' : entry['dlp_profile'],
+                'dlp_rule' : entry['dlp_rule'],
+                'policy' : entry['policy'],
+                'scan_type' : entry['scan_type'],
                 'sha256': entry['sha256'],
                 'title': entry['title']
             })
         # Printing extracted fields
-        for entry in selected_fields:
-            print(f"Timestamp: {entry['timestamp']}")
-            print(f"Date (UTC): {entry['Date (converted)']}")
-            print(f"_id: {entry['_id']}")
-            print(f"sha256: {entry['sha256']}")
-            print(f"title: {entry['title']}")
-            print("-----------------------------")
         return selected_fields, wait_time
     
     selected_fields = []
@@ -95,7 +95,15 @@ if __name__ == "__main__":
             break
         selected_fields,wait= _extractFields(response,selected_fields)
         operation = "next"
-        time.sleep(wait)
+        logger.info(f"Waiting {wait+1} seconds for API rate limiting...")
+        time.sleep(wait+1)
 
-    
-   
+    num_rows = len(selected_fields)
+    print("Total DLP alerts=", num_rows)
+    logger.info(f"Total DLP alerts={num_rows}")   
+    print("{:<5} {:<5} {:<5} {:<5} {:<5} {:<5}".format("Timestamp", "Date (converted)", "_id", "Alert Name", "Alert Type", "Scan type","Title"))
+    print("="*100)
+
+    for item in selected_fields:
+        print("{:<5} {:<5} {:<5} {:<5} {:<5} {:<5}".format(
+        item['timestamp'], item['Date (converted)'], item['_id'], item['alert_name'], item['alert_type'], item['scan_type'], item['title']))
