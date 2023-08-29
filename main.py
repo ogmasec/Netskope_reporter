@@ -101,9 +101,18 @@ if __name__ == "__main__":
     num_rows = len(selected_fields)
     print("Total DLP alerts=", num_rows)
     logger.info(f"Total DLP alerts={num_rows}")   
-    print("{:<5} {:<5} {:<5} {:<5} {:<5} {:<5}".format("Timestamp", "Date (converted)", "_id", "Alert Name", "Alert Type", "Scan type","Title"))
-    print("="*100)
+
+
+
+    print("{:<15} {:<25} {:<20} {:<50} {:<15} {:<20} {:<20} {:<20} {:<20} {:<15} {:<40}".format(
+        "Timestamp", "Date (converted)", "_id", "Alert Name", "Alert Type", "DLP Incident ID",
+        "DLP Profile", "DLP Rule", "Policy", "Scan Type", "Title"
+    ))
+    print("="*240)
 
     for item in selected_fields:
-        print("{:<5} {:<5} {:<5} {:<5} {:<5} {:<5}".format(
-        item['timestamp'], item['Date (converted)'], item['_id'], item['alert_name'], item['alert_type'], item['scan_type'], item['title']))
+        print("{:<15} {:<25} {:<20} {:<50} {:<15} {:<20} {:<20} {:<20} {:<20} {:<15} {:<40}".format(
+            item['timestamp'], item['Date (converted)'], item['_id'], item['alert_name'], item['alert_type'],
+            item['dlp_incident_id'], item['dlp_profile'], item['dlp_rule'], item['policy'], item['scan_type'], item['title']
+        ))
+
