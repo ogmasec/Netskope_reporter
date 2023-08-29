@@ -152,4 +152,4 @@ cython_debug/
 #.idea/
 
 # Ignoring private information
-Netskope_reporter/private/
+*.ini
