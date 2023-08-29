@@ -1,9 +1,8 @@
 # Netskope alerts reporter
-## README TODO
-# Prerequesites
 ## Related documentations
-[Dataexport Netskope documentation](https://docs.netskope.com/en/netskope-help/admin-console/rest-api/rest-api-v2-overview-312207/using-the-rest-api-v2-dataexport-iterator-endpoints/)
+[Dataexport Netskope documentation](https://docs.netskope.com/en/netskope-help/admin-console/rest-api/rest-api-v2-overview-312207/using-the-rest-api-v2-dataexport-iterator-endpoints/)--
 [NetskopeSDK](https://pypi.org/project/netskopesdk/)
+# Prerequesites
 ```
 pip install netskopesdk
 ```
