@@ -67,9 +67,9 @@ if __name__ == "__main__":
         return data
  
 
-    def _extractFields(data) :
+    def _extractFields(data,selected_fields) :
         # Extracting fields
-        selected_fields = []
+        # selected_fields = []
         wait_time = data["wait_time"]
         for entry in data['result']:
             timestamp_epoch = entry['timestamp']
@@ -89,15 +89,16 @@ if __name__ == "__main__":
             print(f"sha256: {entry['sha256']}")
             print(f"title: {entry['title']}")
             print("-----------------------------")
-        return wait_time
+        return selected_fields, wait_time
     
+    selected_fields = []
     while True:
         response = _getData(operation)
         if 'result' in response and isinstance(response['result'], list) and len(response['result']) == 0:
             print("No more data...")
             logger.info("No more data...")
             break
-        wait = _extractFields(response)
+        selected_fields,wait= _extractFields(response,selected_fields)
         operation = "next"
         time.sleep(wait)
 
