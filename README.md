@@ -2,9 +2,7 @@
 ## Related documentations
 [Dataexport Netskope documentation](https://docs.netskope.com/en/netskope-help/admin-console/rest-api/rest-api-v2-overview-312207/using-the-rest-api-v2-dataexport-iterator-endpoints/)<br/>
 [NetskopeSDK](https://pypi.org/project/netskopesdk/)</li>
-```
-pip install netskopesdk
-```
+
 ## Create this file named "config.ini" and place it into the folder "private"
 ```
 ######
