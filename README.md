@@ -1,6 +1,13 @@
-# Dev skeleton
-## This is a simple first git push it has to be done
-##Create this file named "config.ini" and place it into the folder "private"
+# Netskope alerts reporter
+## README TODO
+# Prerequesites
+## Related documentations
+[Dataexport Netskope documentation](https://docs.netskope.com/en/netskope-help/admin-console/rest-api/rest-api-v2-overview-312207/using-the-rest-api-v2-dataexport-iterator-endpoints/)
+[NetskopeSDK](https://pypi.org/project/netskopesdk/)
+```
+pip install netskopesdk
+```
+## Create this file named "config.ini" and place it into the folder "private"
 ```
 ######
 ###### Make sure you gitignore this file
