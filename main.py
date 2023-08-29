@@ -9,11 +9,6 @@ from modules.logger import *
 import time
 from datetime import datetime
 import requests
-
-
-from netskope_api.iterator.netskope_iterator import NetskopeIterator
-from netskope_api.iterator.const import Const
-from requests.exceptions import RequestException
 #####
 
 
