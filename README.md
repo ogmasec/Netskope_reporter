@@ -1,7 +1,7 @@
 # Dev skeleton
 ## This is a simple first git push it has to be done
 ##Create this file named "config.ini" and place it into the folder "private"
-'''
+```
 ######
 ###### Make sure you gitignore this file
 ######
@@ -23,5 +23,4 @@ NSKP_PROXIES : {"<PROXY-HOSTS>"}
 NSKP_EVENT_TYPE : "<EVENT-TYPE>"
 NSKP_ITERATOR_NAME : "<ITERATOR-NAME>"
 NSKP_USER_AGENT : "<SPLUNK-TENANT-HOSTNAME>"
-
-'''
+```
