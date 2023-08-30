@@ -6,6 +6,7 @@
 ##### Import requests
 import private.config as config
 from modules.logger import *
+from modules.pdfGen import *
 import time
 from datetime import datetime
 import requests
@@ -70,18 +71,18 @@ if __name__ == "__main__":
             timestamp_epoch = entry['timestamp']
             timestamp_readable = datetime.fromtimestamp(timestamp_epoch).strftime('%Y-%m-%d %H:%M:%S')
             selected_fields.append({
-                'timestamp': entry['timestamp'],
+                #'timestamp': entry['timestamp'],
                 'Date (converted)': timestamp_readable,
-                '_id': entry['_id'],
+                #'_id': entry['_id'],
                 'alert_name' : entry['alert_name'],
                 'alert_type' : entry['alert_type'],
-                'dlp_incident_id' : entry['dlp_incident_id'],
-                'dlp_profile' : entry['dlp_profile'],
-                'dlp_rule' : entry['dlp_rule'],
-                'policy' : entry['policy'],
-                'scan_type' : entry['scan_type'],
-                'sha256': entry['sha256'],
-                'title': entry['title']
+                #'dlp_incident_id' : entry['dlp_incident_id'],
+                #'dlp_profile' : entry['dlp_profile'],
+                #'dlp_rule' : entry['dlp_rule'],
+                #'policy' : entry['policy']
+                #'scan_type' : entry['scan_type'],
+                #'sha256': entry['sha256'],
+                #'title': entry['title']
             })
         # Printing extracted fields
         return selected_fields, wait_time
@@ -102,7 +103,7 @@ if __name__ == "__main__":
     print("Total DLP alerts=", num_rows)
     logger.info(f"Total DLP alerts={num_rows}")   
 
-
+    '''
 
     print("{:<15} {:<25} {:<20} {:<50} {:<15} {:<20} {:<20} {:<20} {:<20} {:<15} {:<40}".format(
         "Timestamp", "Date (converted)", "_id", "Alert Name", "Alert Type", "DLP Incident ID",
@@ -115,4 +116,9 @@ if __name__ == "__main__":
             item['timestamp'], item['Date (converted)'], item['_id'], item['alert_name'], item['alert_type'],
             item['dlp_incident_id'], item['dlp_profile'], item['dlp_rule'], item['policy'], item['scan_type'], item['title']
         ))
+    
+    '''
 
+
+    pdf_generator = PDFGenerator("data_table.pdf")
+    pdf_generator.generate_pdf(selected_fields)
