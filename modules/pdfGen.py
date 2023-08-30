@@ -1,50 +1,45 @@
+import pandas as pd
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib import colors
 
 class PDFGenerator:
-    def __init__(self, filename):
-        self.filename = filename
-        self.document = SimpleDocTemplate(filename, pagesize=letter)
-
+    def __init__(self, file_name):
+        self.file_name = file_name
+        self.document = SimpleDocTemplate(self.file_name, pagesize=letter)
+        
     def generate_pdf(self, data):
         table_data = [
-            #["Timestamp", "Date (converted)", "_id", "Alert Name", "Alert Type", "DLP Rule", "Policy"]
-            ["Date", "Alert Name", "Alert Type"]
+            ["Timestamp", "Incident ID", "DLP Rule Name", "DLP Rule Score", "DLP Rule Severity", "Activity"]
         ]  # Header row
-
+        
         for item in data:
+            dlp_rules = item.get("dlp_rules", [])
+            dlp_rule = dlp_rules[0] if dlp_rules else {}
             row = [
-                #item.get("timestamp", ""),
                 item.get("Date (converted)", ""),
-                #item.get("_id", ""),
-                item.get("alert_name", ""),
-                item.get("alert_type", "")
-                #item.get("dlp_rule", ""),
-                #item.get("policy", ""),
+                item.get("dlp_incident_id", ""),
+                dlp_rule.get("dlp_rule_name", ""),
+                str(dlp_rule.get("dlp_rule_score", "")),
+                dlp_rule.get("dlp_rule_severity", ""),
+                item.get("activity", "")
             ]
             table_data.append(row)
-
-        table = Table(table_data, colWidths=[None] * 3)
+        
+        table = Table(table_data, colWidths=[100, 100, 150, 80, 100, 100])
         table.setStyle(TableStyle([
             ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
             ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-            ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+            ('BACKGROUND', (0, 0), (-1, 0), colors.orange),
             ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
             ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
             ('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
             ('BOX', (0, 0), (-1, -1), 0.25, colors.black),
         ]))
-
-        # Automatically adjust row heights based on content
-        row_heights = []
-        for row_idx in range(len(table_data)):
-            row_height = max([table_data[row_idx][col_idx] for col_idx in range(3)], key=lambda cell: len(str(cell)))
-            row_heights.append(row_height)
-
-        table.setStyle(TableStyle([
-            ('ROWHEIGHT', (0, 0), (-1, -1), row_heights),
-        ]))
-
+        
         elements = [table]
         self.document.build(elements)
+
+        df = pd.DataFrame(table_data)
+        print(df)
+
