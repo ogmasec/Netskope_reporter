@@ -16,8 +16,13 @@ format = %(asctime)s ; %(levelname)s ; %(message)s
 level = DEBUG
 
 [params]
-NSKP_TOKEN = <REST-API-TOKEN>
-NSKP_TENANT_HOSTNAME = <HOSTNAME>
+NSKP_TOKEN = 
+NSKP_TENANT_HOSTNAME = ###YOUR TENANT###
+NSKP_URL = .goskope.com
+NSKP_ALERTS_DLP = /api/v2/events/dataexport/alerts/dlp
+NSKP_EVENTS_DLP = /api/v2/events/dataexport/events/incident
+NSKP_event_alert = /api/v2/events/dataexport/events/alert
+
 # Optional param to pass the proxy hosts.
 NSKP_PROXIES = {<PROXY-HOSTS>}
 NSKP_EVENT_TYPE = <EVENT-TYPE>
