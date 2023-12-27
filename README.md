@@ -29,3 +29,10 @@ NSKP_EVENT_TYPE = <EVENT-TYPE>
 NSKP_ITERATOR_NAME = <ITERATOR-NAME>
 NSKP_USER_AGENT = <SPLUNK-TENANT-HOSTNAME>
 ```
+
+
+## TODO:
+
+- Bypass steering to allow NS to work at the same time
+- Add Argparse
+
